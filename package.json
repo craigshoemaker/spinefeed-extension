@@ -1,0 +1,38 @@
+{
+	"name": "spinefeed-extension",
+	"displayName": "spinefeed-extension",
+	"description": "VS Code Extension for Spinefeed",
+	"version": "1.0.0",
+	"engines": {
+		"vscode": "^1.30.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.getFeedback"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.getFeedback",
+				"title": "Get Feedback"
+			}
+		]
+	},
+	"scripts": {
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^3.1.4",
+		"vscode": "^1.1.25",
+		"eslint": "^4.11.0",
+		"@types/node": "^8.10.25",
+		"@types/mocha": "^2.2.42"
+	},
+	"dependencies": {
+		"axios": "^0.18.0"
+	}
+}
