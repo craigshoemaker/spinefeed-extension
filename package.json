@@ -17,7 +17,7 @@
 		"commands": [
 			{
 				"command": "extension.getFeedback",
-				"title": "Get Feedback"
+				"title": "Spinefeed: Get Content Model Feedback"
 			}
 		]
 	},
