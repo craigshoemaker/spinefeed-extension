@@ -1,5 +1,4 @@
 const vscode = require('vscode');
-const appConfig = require('./config');
 const feedback = require('./feedbackService');
 
 function getActiveEditorText(vscode) {
@@ -17,15 +16,6 @@ function getActiveEditorText(vscode) {
 	return text;
 }
 
-function getArticleType(content) {
-	const matches = content.match(/ms\.topic:(.*)/);
-	let type = '';
-	if(matches.length > 1) {
-		type = matches[1].trim();
-	}
-	return type;
-}
-
 /**
  * @param {vscode.ExtensionContext} context
  */
@@ -39,17 +29,11 @@ function activate(context) {
 	let disposable = vscode.commands.registerCommand('extension.getFeedback', function () {
 		try {
 			const content = getActiveEditorText(vscode);
-			const type = getArticleType(content);
-	
-			if(feedback.isValidType(type)) {
-				feedback.get(content, type).then(response => {
-					output.append(response);
-					output.appendLine('-----------------------------------');
-					output.show();
-				});
-			} else {
-				vscode.window.showInformationMessage(appConfig.messages.invalidArticleType);
-			}
+			feedback.get(content).then(response => {
+				output.append(response);
+				output.appendLine('-----------------------------------');
+				output.show();
+			});
 		} catch(ex) {
 			vscode.window.showErrorMessage(ex);
 		}
