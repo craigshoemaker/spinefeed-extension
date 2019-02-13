@@ -9,6 +9,6 @@ module.exports = {
 		};
 		
         const response = await axios.post(url, content, requestConfig);
-        return response.data.details;
+        return response.data.details.string;
     }
 };
